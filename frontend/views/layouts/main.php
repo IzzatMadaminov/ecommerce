@@ -28,6 +28,7 @@ AppAsset::register($this);
 
 <div class="wrap">
     <?php
+    Yii::$app->name = 'Izzat_dev';
     NavBar::begin([
         'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
@@ -71,7 +72,11 @@ AppAsset::register($this);
     <div class="container">
         <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <p class="pull-right social-media">
+            <a href="https://www.facebook.com/izzat.madaminov.8897/" class="fa fa-facebook"></a>
+            <a href="https://t.me/izzat_dev" class="fa fa-telegram"></a>
+            <a href="https://www.linkedin.com/in/izzat-madaminov-1104a7198/" class="fa fa-linkedin"></a>
+        </p>
     </div>
 </footer>
 

@@ -118,3 +118,13 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+.pull-right {
+    float: right;
+}
+.pull-left {
+    float: left;
+}
+.social-media>a {
+    padding: 5px;
+}
+

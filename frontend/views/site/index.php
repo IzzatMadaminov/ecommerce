@@ -3,8 +3,9 @@
 /* @var $this yii\web\View */
 /* @var \yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'My Yii Application';
+$this->title = 'Izzat Madaminov';
 ?>
+
 <div class="site-index">
 
     <div class="body-content">
