@@ -10,6 +10,8 @@ use common\models\User;
  */
 class SignupForm extends Model
 {
+    public $firstname;
+    public $lastname;
     public $username;
     public $email;
     public $password;
@@ -21,6 +23,10 @@ class SignupForm extends Model
     public function rules()
     {
         return [
+            ['firstname', 'required'],
+            ['firstname', 'string', 'max' => '255'],
+            ['lastname', 'required'],
+            ['lastname', 'string', 'max' => '255'],
             ['username', 'trim'],
             ['username', 'required'],
             ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
@@ -50,6 +56,8 @@ class SignupForm extends Model
         
         $user = new User();
         $user->username = $this->username;
+        $user->firstname = $this->firstname;
+        $user->lastname = $this->lastname;
         $user->email = $this->email;
         $user->setPassword($this->password);
         $user->generateAuthKey();
@@ -65,15 +73,24 @@ class SignupForm extends Model
      */
     protected function sendEmail($user)
     {
-        return Yii::$app
-            ->mailer
-            ->compose(
-                ['html' => 'emailVerify-html', 'text' => 'emailVerify-text'],
-                ['user' => $user]
-            )
-            ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
-            ->setTo($this->email)
-            ->setSubject('Account registration at ' . Yii::$app->name)
-            ->send();
+        try {
+            $a =  Yii::$app
+                ->mailer
+                ->compose(
+                    ['html' => 'emailVerify-html', 'text' => 'emailVerify-text'],
+                    ['user' => $user]
+                )
+                ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
+                ->setTo($this->email)
+                ->setSubject('Account registration at ' . Yii::$app->name)
+                ->send();
+        } catch (\Swift_TransportException $e) {
+            echo '<pre>';
+            var_dump($e->getMessage());
+        }
+//        echo '<pre>';
+//        var_dump($a);
+//        echo '</pre>';
+//        die();
     }
 }

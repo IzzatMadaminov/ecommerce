@@ -10,7 +10,10 @@ return [
             'class' => 'yii\caching\FileCache',
         ],
         'formatter' => [
-            'datetimeFormat' => 'php:d/m/y H:i'
+            'datetimeFormat' => 'php:d/m/y H:i',
+            'decimalSeparator' => ',',
+            'thousandSeparator' => ' ',
+            'currencyCode' => 'UZS'
         ]
     ],
 ];
